@@ -1,0 +1,16 @@
+{
+  "name": "backend-course-tasks",
+  "version": "1.0.0",
+  "description": "first nodejs app",
+  "main": "first-app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon first-app.js",
+    "start-server": "node first-app.js"
+  },
+  "author": "ankit",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
