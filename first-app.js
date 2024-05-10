@@ -5,31 +5,18 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
+const adminRoutes = require('./routes/admin')
+const shopRoutes = require('./routes/shop')
+
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.use('/add-product',(req, res, next)=>{
-  if (req.url === '/favicon.ico') {
-    return res.status(204).end();
-  }
-  // console.log('in middleware - add-product');
-  res.send('<form action="/product" method="POST" ><input type="text" name="title" placeholder="title"/><input type="number" name="size" placeholder="size"/><button type="submit">Add Product</button></form>');
-});
+app.use('/admin', adminRoutes);
 
-app.post('/product',(req, res, next)=>{
-  if (req.url === '/favicon.ico') {
-    return res.status(204).end();
-  }
-  console.log(req.body);
-  res.redirect('/');
-});
+app.use(shopRoutes);
 
-app.use('/',(req, res, next)=>{
-  if (req.url === '/favicon.ico') {
-    return res.status(204).end();
-  }
-  // console.log('in middleware - express');
-  res.send('<h1>Hello from Express</h1>');
-});
+app.use((req,res,next)=>{
+  res.status(404).send('<h1>404, page not found !</h1>')
+})
 
 console.log('server started');
 
